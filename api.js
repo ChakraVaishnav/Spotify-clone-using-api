@@ -55,7 +55,7 @@ if (accessToken) {
 
 logoutButton.addEventListener('click', function () {
     localStorage.removeItem('access_token');
-    window.location.href = 'http://localhost:5500'; // Redirect back to homepage
+    window.location.href = redirectUri; // Redirect back to homepage
 });
 
 // Name of the user
