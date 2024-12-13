@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Clone</title>
+    <link rel="icon" href="images/logoPR.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- <link rel="stylesheet" href="searchstyle.css"> -->
+</head>
+<body>
+    <div class="hamburger">
+        <button class="fa-solid fa-bars" ></button> <!-- This is the hamburger icon (3 lines) -->
+    </div>
+    <div class="sidebar">
+        <div class="logo">
+          <a href="#" >
+            <img src="images/TopLogoPR.jpg" alt="Logo"/>
+          </a>
+        </div>
+        <div class="nav">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="fa fa-home" ></span>
+                        <span onclick="getTopTracks()">Home</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#">
+                        <span class="fa fas fa-book"></span>
+                        <span onclick="getYourLibrary()">Your Library</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="nav2">
+            <ul>
+                <li>
+                    <div class="createplaylist">
+                    <span class="bold">Create your first playlist</span>
+                    <span class="light">It's easy we will help you.</span>
+                    <button class="playlistbt">create playlist</button>
+                    </div>
+                </li>
+                <br>
+                <li>
+                    <a href="#">
+                        <span class="fa fas fa-heart"></span>
+                        <span onclick="getLikedSongs()">LikedSongs</span>
+                    </a>
+                </li>
+                <br>
+                <li>
+                    <a href="#">
+                        <span>Premium</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="pol">
+            <ul>
+                <li>
+                <a href="#">
+                    <span class="fa fas fa-cookie"></span>
+                    <span>Cookies</span>
+                </a>
+            </li>
+                <li>
+                    <a href="#">Privacy Policy</a>
+                </li>
+                <li>
+                    <a href="#">Support</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="fa fas fa-language"></span>
+                        <span>Language</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- Overlay for closing sidebar -->
+    <div class="overlay" style="visibility: hidden;"></div>
+    <main>
+        <div class="topbar">
+            <div class="prev-next-bt">
+              <button type="button" class="fa fas fa-chevron-left"></button> 
+              <button type="button" class="fa fas fa-chevron-right"></button>
+            </div>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search for a song...">
+                <button id="search-btn" class="fas fa-search"></button>
+            </div>
+            <div class="navbar">
+                <span class="log"><button type="button" id="login">LogIn</button></span>
+            </div>
+        </div>
+        
+        <!-- search results-->
+        <div id="results">
+            
+
+        </div>
+        
+        <div id="top" class="top-tracks-container">
+            <h2>Your Top 15 Tracks</h2>
+            <div id="Topsongs" class="song-grid">
+
+            </div>
+            <!-- Top tracks will be displayed here -->
+        </div>
+        <div id="liked" class="likedClass">
+            <h2>
+              Your Liked Songs
+            </h2>
+            <div class="liked-songs-class" id="liked-songs">
+
+            </div>
+        </div>
+        <div id="lib" class="libClass">
+            <h2>
+              Your Library
+            </h2>
+            <div class="lib-songs-class" id="lib-songs">
+                
+            </div>
+        </div>
+    </main>
+    <!-- <script src="topSongs.js"></script> -->
+    <script src="api.js"></script>
+</body> 
+</html>
