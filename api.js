@@ -1,6 +1,6 @@
 // Spotify credentials
 const clientId = '2bfeb25127d34c8fa26bae287a318f97'; // Replace with your Client ID
-const redirectUri = 'http://localhost:5500'; // Replace with your Redirect URI
+const redirectUri = 'https://spotify-clone-using-api-vaishnav.vercel.app/'; // Replace with your Redirect URI
 const scope = 'user-read-private user-read-email user-top-read user-library-read'; // Updated scope to include user-top-read
 
 //menu
