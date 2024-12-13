@@ -116,6 +116,22 @@ body {
     text-decoration:underline;
     font-size: 15px;
 }
+.logout-class button {
+    position: relative;
+    bottom: -90px;
+    font-size: 15px;
+   border-radius: 20px;
+   border: none;
+padding: 10px;
+padding-left: 16px;
+padding-right: 16px;
+}
+
+.logout-class button:hover{
+    background-color:rgb(214, 211, 211) ;
+    cursor: pointer;
+}
+
 main{
     margin-left: 245px;
     margin-bottom: 100px;
@@ -250,6 +266,7 @@ padding-right: 16px;
     color: #fff;
 }
 #liked-songs{
+    margin-left: 0px;
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 songs per row on larger screens */
     gap: 20px;
@@ -270,7 +287,7 @@ padding-right: 16px;
     justify-items: center;
 }
 .song-card {
-    width: 350px;
+    width: 370px;
     height: 100px;
     padding-top: 7px;
     background-color: #1f1e1e;
@@ -281,7 +298,6 @@ padding-right: 16px;
 }
 
 .song-card:hover {
-    transform: scale(1.05);
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
 }
 
@@ -348,6 +364,7 @@ main {
 .sidebar .pol ul li a {
     font-size: 12px;
 }
+
 .overlay {
     position: fixed;
     top: 0;
