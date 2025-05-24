@@ -220,14 +220,14 @@ padding-right: 16px;
     padding: 11px 15px;
     font-size: 1rem;
     border: none;
-    background-color: #1DB954;
+    background-color: #0c56eb;
     color: black;
     cursor: pointer;
     border-radius: 0 5px 5px 0;
 }
 
 #search-btn:hover {
-    background-color: #14833b;
+    background-color: #001e5f;
 }
 
 /* Results Section */
@@ -403,6 +403,10 @@ main {
 }
 #search-btn{
     width: 35px;
+    color: rgb(28, 28, 183);
+}
+.fa-search{
+    background-color: blue;
 }
 #liked-songs{
     grid-template-columns: repeat(1, 1fr);
