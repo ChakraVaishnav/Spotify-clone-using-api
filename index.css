@@ -220,7 +220,7 @@ padding-right: 16px;
     padding: 11px 15px;
     font-size: 1rem;
     border: none;
-    background-color: #0c56eb;
+    background-color: #1DB954;
     color: black;
     cursor: pointer;
     border-radius: 0 5px 5px 0;
@@ -414,4 +414,5 @@ main {
 #lib-songs{
     grid-template-columns:repeat(1,1fr) ;
 }
+
 }
