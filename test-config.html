@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Config Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #121212;
+            color: #fff;
+        }
+        .status {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .success {
+            background: #1db954;
+        }
+        .error {
+            background: #e22134;
+        }
+        .warning {
+            background: #ff9800;
+        }
+        .info {
+            background: #2196f3;
+        }
+        code {
+            background: #282828;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        pre {
+            background: #282828;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎵 Spotify Configuration Diagnostic</h1>
+    <div id="results"></div>
+
+    <script src="config.js"></script>
+    <script>
+        const results = document.getElementById('results');
+        
+        function addStatus(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `status ${type}`;
+            div.innerHTML = message;
+            results.appendChild(div);
+        }
+
+        // Check if config.js loaded
+        if (typeof CONFIG === 'undefined') {
+            addStatus('❌ config.js failed to load or CONFIG is undefined', 'error');
+        } else {
+            addStatus('✅ config.js loaded successfully', 'success');
+        }
+
+        // Check CONFIG values
+        if (window.CONFIG) {
+            addStatus('<strong>Configuration Values:</strong><pre>' + JSON.stringify(CONFIG, null, 2) + '</pre>', 'info');
+
+            // Check Client ID
+            if (CONFIG.SPOTIFY_CLIENT_ID) {
+                addStatus('✅ Client ID is set: ' + CONFIG.SPOTIFY_CLIENT_ID.substring(0, 8) + '...', 'success');
+            } else {
+                addStatus('❌ Client ID is NOT set in config.js', 'error');
+            }
+
+            // Check Environment
+            addStatus('📍 Environment: ' + (CONFIG.NODE_ENV || 'not set'), 'info');
+
+            // Check Redirect URIs
+            if (CONFIG.DEV_REDIRECT_URI) {
+                addStatus('✅ Dev Redirect URI: <code>' + CONFIG.DEV_REDIRECT_URI + '</code>', 'success');
+            }
+            if (CONFIG.PROD_REDIRECT_URI) {
+                addStatus('✅ Prod Redirect URI: <code>' + CONFIG.PROD_REDIRECT_URI + '</code>', 'success');
+            }
+        }
+
+        // Check current location
+        const currentUrl = window.location.origin + window.location.pathname;
+        addStatus('📍 Current URL: <code>' + currentUrl + '</code>', 'info');
+
+        // Determine which redirect URI would be used
+        function getRedirectUri() {
+            if (CONFIG.NODE_ENV === 'production' && CONFIG.PROD_REDIRECT_URI) {
+                return CONFIG.PROD_REDIRECT_URI;
+            }
+            if (CONFIG.NODE_ENV === 'development' && CONFIG.DEV_REDIRECT_URI) {
+                return CONFIG.DEV_REDIRECT_URI;
+            }
+            return currentUrl;
+        }
+
+        const redirectUri = getRedirectUri();
+        addStatus('🔗 Redirect URI that will be used: <code>' + redirectUri + '</code>', 'warning');
+
+        // Instructions
+        addStatus(`
+            <strong>⚠️ IMPORTANT: Update Spotify App Settings</strong><br><br>
+            Go to <a href="https://developer.spotify.com/dashboard" target="_blank" style="color: #1db954;">Spotify Developer Dashboard</a> and make sure your app has this redirect URI:<br>
+            <code>${redirectUri}</code><br><br>
+            If using both dev and prod, add BOTH URIs to Spotify:
+            <ul>
+                <li><code>${CONFIG.DEV_REDIRECT_URI || 'http://localhost:5500/'}</code></li>
+                <li><code>${CONFIG.PROD_REDIRECT_URI || 'your-production-url'}</code></li>
+            </ul>
+        `, 'warning');
+
+        // Test localStorage
+        try {
+            localStorage.setItem('test', 'test');
+            localStorage.removeItem('test');
+            addStatus('✅ localStorage is working', 'success');
+        } catch (e) {
+            addStatus('❌ localStorage is NOT working: ' + e.message, 'error');
+        }
+
+        // Test crypto API
+        if (window.crypto && window.crypto.subtle) {
+            addStatus('✅ Web Crypto API is available (needed for PKCE)', 'success');
+        } else {
+            addStatus('❌ Web Crypto API is NOT available', 'error');
+        }
+    </script>
+</body>
+</html>
